@@ -48,7 +48,6 @@ nav a.active { color: var(--accent-blue); border-bottom: 2px solid var(--accent-
 
 /* --- Compact Hero & Profile --- */
 .hero-header {
-  /* Reduced from 70vh to 45vh for a much shorter header */
   min-height: 45vh; 
   display: flex;
   align-items: center;
@@ -58,16 +57,14 @@ nav a.active { color: var(--accent-blue); border-bottom: 2px solid var(--accent-
   background-position: center;
   color: white;
   text-align: center;
-  /* Reduced padding to take up less vertical room */
   padding: 3rem 2rem; 
 }
 
 .profile-placeholder {
-    /* Scaled down from 300px to 180px for a more balanced look */
     width: 180px;
     height: 180px;
     background-color: #fff;
-    border: 5px solid white; /* Slightly thinner border for the smaller size */
+    border: 5px solid white;
     border-radius: 50%;
     margin: 0 auto 1.5rem;
     display: flex;
@@ -84,7 +81,6 @@ nav a.active { color: var(--accent-blue); border-bottom: 2px solid var(--accent-
 }
 
 h1 { 
-    /* Slightly smaller font for the shorter header */
     font-size: 3rem; 
     margin: 0.5rem 0; 
 }
@@ -97,18 +93,23 @@ h1 {
 }
 
 /* --- Slider --- */
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
 .slider-container { 
     width: 100%; 
-    /* Changed: allows horizontal scrolling */
     overflow-x: auto; 
-    padding: 5rem 0; 
+    padding: 3rem 0; 
     background: var(--light-bg); 
-    /* Adds smooth physics on trackpads/touch screens */
     scroll-behavior: smooth; 
     -webkit-overflow-scrolling: touch; 
 }
 
-/* Optional: Hide the scrollbar for a cleaner look */
+/* Hide scrollbar for a cleaner look */
 .slider-container::-webkit-scrollbar {
     display: none;
 }
@@ -116,7 +117,6 @@ h1 {
 .slider-track { 
     display: flex; 
     width: max-content; 
-    /* Removed: animation: scroll 45s linear infinite; */
     align-items: center; 
 }
 
@@ -133,7 +133,6 @@ h1 {
     justify-content: center;
     align-items: center;
     border: 1px solid rgba(0,0,0,0.05);
-    /* Snaps slides into place when scrolling manually */
     scroll-snap-align: center; 
 }
 
@@ -145,7 +144,46 @@ h1 {
     padding: 10px; 
 }
 
-@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+/* Slider Controls */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: var(--dark-blue);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+    background: var(--primary-blue);
+    color: white;
+}
+
+.prev-btn {
+    left: -15px;
+}
+
+.next-btn {
+    right: -15px;
+}
+
+/* Hide visual navigation buttons on smaller displays where swiping is native and expected */
+@media (max-width: 768px) {
+    .nav-btn {
+        display: none;
+    }
+}
 
 /* --- Lightbox --- */
 .lightbox {
