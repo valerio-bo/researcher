@@ -21,7 +21,7 @@
     </div>
   </nav>
 
-<header class="hero-header" style="background: linear-gradient(rgba(10, 38, 71, 0.85), rgba(26, 95, 122, 0.85)), url('hero-bg.jpg') no-repeat center center / cover;">
+  <header class="hero-header" style="background: linear-gradient(rgba(10, 38, 71, 0.85), rgba(26, 95, 122, 0.85)), url('hero-bg.jpg') no-repeat center center / cover;">
     <div class="hero">
       <div class="profile-placeholder">
         <img src="valerio-bo.jpg" alt="Valerio Bo" class="profile-image">
@@ -32,7 +32,7 @@
         Bridging the gap between <strong>Soft Robotics</strong> and <strong>Socially-Aware Interaction</strong>.
       </p>
     </div>
-</header>
+  </header>
 
   <section>
     <div class="container">
@@ -57,29 +57,29 @@
     </div>
   </section>
 
-<section class="section-light">
-  <div class="container">
-    <div class="section-header"><h2>Research Gallery</h2></div>
-    
-    <!-- Wrap the slider and add navigation controls -->
-    <div class="slider-wrapper">
-      <button class="nav-btn prev-btn" aria-label="Previous slide">❮</button>
+  <section class="section-light">
+    <div class="container">
+      <div class="section-header"><h2>Research Gallery</h2></div>
       
-      <div class="slider-container">
-        <div class="slider-track">
-          <div class="slide"><img src="project1.jpg" alt="Soft Hand Design"></div>
-          <div class="slide"><img src="project2.jpg" alt="Shared-Control Teleoperation"></div>
-          <div class="slide"><img src="project5.jpg" alt="Human-Robot Handover"></div>
-          <div class="slide"><img src="project3.jpg" alt="Social Navigation"></div>
-          <div class="slide"><img src="project4.jpg" alt="Intention Recognition"></div>
+      <!-- Wrap the slider and add navigation controls -->
+      <div class="slider-wrapper">
+        <button class="nav-btn prev-btn" id="prevBtn" aria-label="Previous slide">❮</button>
+        
+        <div class="slider-container">
+          <div class="slider-track">
+            <div class="slide"><img src="project1.jpg" alt="Soft Hand Design"></div>
+            <div class="slide"><img src="project2.jpg" alt="Shared-Control Teleoperation"></div>
+            <div class="slide"><img src="project5.jpg" alt="Human-Robot Handover"></div>
+            <div class="slide"><img src="project3.jpg" alt="Social Navigation"></div>
+            <div class="slide"><img src="project4.jpg" alt="Intention Recognition"></div>
+          </div>
         </div>
+        
+        <button class="nav-btn next-btn" id="nextBtn" aria-label="Next slide">❯</button>
       </div>
-      
-      <button class="nav-btn next-btn" aria-label="Next slide">❯</button>
-    </div>
 
-  </div>
-</section>
+    </div>
+  </section>
 
   <footer>
     <div class="container"><p>&copy; 2026 Valerio Bo · IRI (CSIC-UPC)</p></div>
@@ -99,6 +99,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", function() {
+      // Lightbox logic
       const images = document.querySelectorAll('.slide img');
       images.forEach(image => {
         image.addEventListener('click', function(e) {
@@ -110,6 +111,22 @@
           lightboxImg.src = this.src;
           caption.innerHTML = this.alt;
         });
+      });
+
+      // Manual Slider control logic
+      const container = document.querySelector('.slider-container');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+
+      // 450px slide width + 40px margin (20px left + 20px right) = 490px total step size
+      const stepSize = 490; 
+
+      nextBtn.addEventListener('click', function() {
+        container.scrollBy({ left: stepSize, behavior: 'smooth' });
+      });
+
+      prevBtn.addEventListener('click', function() {
+        container.scrollBy({ left: -stepSize, behavior: 'smooth' });
       });
     });
   </script>
