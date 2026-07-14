@@ -95,10 +95,30 @@ h1 {
     margin: 0 auto 1rem; 
     opacity: 0.95; 
 }
-/* --- Slider --- */
-.slider-container { width: 100%; overflow: hidden; padding: 5rem 0; background: var(--light-bg); }
 
-.slider-track { display: flex; width: max-content; animation: scroll 45s linear infinite; align-items: center; }
+/* --- Slider --- */
+.slider-container { 
+    width: 100%; 
+    /* Changed: allows horizontal scrolling */
+    overflow-x: auto; 
+    padding: 5rem 0; 
+    background: var(--light-bg); 
+    /* Adds smooth physics on trackpads/touch screens */
+    scroll-behavior: smooth; 
+    -webkit-overflow-scrolling: touch; 
+}
+
+/* Optional: Hide the scrollbar for a cleaner look */
+.slider-container::-webkit-scrollbar {
+    display: none;
+}
+
+.slider-track { 
+    display: flex; 
+    width: max-content; 
+    /* Removed: animation: scroll 45s linear infinite; */
+    align-items: center; 
+}
 
 .slide {
     width: 450px;
@@ -113,9 +133,17 @@ h1 {
     justify-content: center;
     align-items: center;
     border: 1px solid rgba(0,0,0,0.05);
+    /* Snaps slides into place when scrolling manually */
+    scroll-snap-align: center; 
 }
 
-.slide img { max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in; padding: 10px; }
+.slide img { 
+    max-width: 100%; 
+    max-height: 100%; 
+    object-fit: contain; 
+    cursor: zoom-in; 
+    padding: 10px; 
+}
 
 @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
